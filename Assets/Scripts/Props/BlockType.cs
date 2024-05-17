@@ -3,5 +3,9 @@ public enum BlockType
     nothing,
     wall,
     @void, 
-    unit
+    unit,
+    stack,
+    box,
+    door,
+    lever
 }

@@ -17,13 +17,16 @@ public class Unit : MonoBehaviour, IResettable
     private float _speed;
     private float _timeToMove = 0.7f;
     private Vector3 _offset;
-    private Box _carryingBox;
+    private Box _carryingBox = null;
+    private BlockType[] _solidBlocks = new BlockType[] { BlockType.wall, BlockType.unit, BlockType.stack, BlockType.box, BlockType.door, BlockType.lever};
+    private Animator _animator;
 
     public bool IsEndExecute {  get; set; }
 
 
     private void Awake()
     {
+        _animator = GetComponent<Animator>();
         OriginalPosition = transform.position;
         Console.Units.Add(this);
     }
@@ -49,15 +52,15 @@ public class Unit : MonoBehaviour, IResettable
     public void ExecuteMove(MoveCommand moveCommand)
     {
         _offset = moveCommand.OffsetDirection;
+        _animator.SetFloat("MoveX", _offset.x);
+        _animator.SetFloat("MoveY", _offset.y);
         _speed = Mathf.Max(1, (Mathf.Abs(_offset.x) + Mathf.Abs(_offset.y)) / Mathf.Sqrt(2)) / _timeToMove;
         var rayCasts = Physics2D.RaycastAll(transform.position, _offset, _offset.magnitude);
         foreach (var rayCast in rayCasts)
         {
             if (rayCast.collider.TryGetComponent(out Block block) 
                 && (block.BlockType == BlockType.wall 
-                || block.BlockType == BlockType.unit && gameObject != rayCast.collider.gameObject)
-                || rayCast.collider.TryGetComponent(out Stack stack)
-                || rayCast.collider.TryGetComponent(out Box box))
+                || _solidBlocks.Contains(block.BlockType) && gameObject != rayCast.collider.gameObject))
             {
                 return;
             }
@@ -95,9 +98,12 @@ public class Unit : MonoBehaviour, IResettable
 
     public void ExecutePickUp(PickUpCommand TakeCommand)
     {
+        if (_carryingBox != null)
+            return;
         if (Physics2D.RaycastAll(transform.position, TakeCommand.OffsetDirection, 1).Any(x => x.collider.TryGetComponent(out _carryingBox)))
         {
             PickUpBox(_carryingBox);
+            _carryingBox.GetComponent<BoxCollider2D>().enabled = false;
         }
     }
 
@@ -116,7 +122,8 @@ public class Unit : MonoBehaviour, IResettable
                     Destroy(stack.LastValue.gameObject);
                 stack.LastValue = Instantiate(_carryingBox.ValueObj.transform);
                 stack.LastValue.SetParent(stack.transform);
-                stack.LastValue.transform.localPosition = Vector3.zero;
+                stack.LastValue.transform.localPosition = new Vector3(0,.135f,0);
+                _carryingBox.GetComponent<BoxCollider2D>().enabled = true;
                 _carryingBox.IsCarrying = false;
                 _carryingBox.gameObject.SetActive(false);
                 _carryingBox = null;
@@ -130,6 +137,7 @@ public class Unit : MonoBehaviour, IResettable
                 return;
             }
         }
+        _carryingBox.GetComponent<BoxCollider2D>().enabled = true;
         _carryingBox.IsCarrying = false;
         _carryingBox.transform.SetParent(null);
         _carryingBox.transform.position = transform.position + _offset + new Vector3(-.44f, .37f);
@@ -155,12 +163,14 @@ public class Unit : MonoBehaviour, IResettable
         _carryingBox.GetComponent<SpriteRenderer>().sortingOrder = 100;
     }
 
-    IEnumerator ExecuteEnumerator(List<CommandLine> commandLines)
+    private IEnumerator ExecuteEnumerator(List<CommandLine> s)
     {
+        var commandLines = s.ToArray();
         var falseLvl = float.MaxValue;
         var levelEnder = FindObjectsByType(typeof(LevelEnder), FindObjectsSortMode.None).First() as LevelEnder;
-        for (; index < commandLines.Count; index++)
+        for (; index < commandLines.Length; index++)
         {
+            Debug.Log($"{gameObject.name} : {index}");
             if (levelEnder.IsLevelEnded())
             {
                 yield break;
@@ -193,7 +203,14 @@ public class Unit : MonoBehaviour, IResettable
                 yield break;
             }
 
-            yield return new WaitForSeconds(1.2f);
+            if (commandLines[index] is Waypoint
+                || commandLines[index] is IfCommand
+                || commandLines[index] is ReturnCommand)
+            {
+                yield return null;
+            }
+            else 
+                yield return new WaitForSeconds(1.2f);
         }
         index = 0;
         IsEndExecute = true;
@@ -212,7 +229,14 @@ public class Unit : MonoBehaviour, IResettable
                 _isMoving = false;
                 _timeToMove = 0.7f;
                 transform.position = new Vector3(Mathf.Round(transform.position.x), Mathf.Round(transform.position.y));
+                _animator.SetFloat("MoveX", 0);
+                _animator.SetFloat("MoveY", 0);
             }
+        }
+        else
+        {
+            _animator.SetFloat("MoveX", 0);
+            _animator.SetFloat("MoveY", 0);
         }
     }
 
@@ -221,10 +245,22 @@ public class Unit : MonoBehaviour, IResettable
         return Array.IndexOf(Console.CommandLines.ToArray(), commandLine);
     }
 
+    public void StopExecute()
+    {
+        StopAllCoroutines();
+        OnReset();
+    }
+
     public void OnReset()
     {
+        StopAllCoroutines();
+        index = 0;
+        IsEndExecute = false;
+        _isMoving = false;
+        _carryingBox = null;
         Dict.Clear();
         transform.position = OriginalPosition;
-        IsEndExecute = false;
+        _animator.SetFloat("MoveX", 0);
+        _animator.SetFloat("MoveY", 0);
     }
 }

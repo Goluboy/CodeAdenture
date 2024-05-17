@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1449613813389825664}
   - component: {fileID: 7181769038223945324}
   - component: {fileID: 6541090357694644040}
+  - component: {fileID: -7388431862275920952}
   m_Layer: 0
   m_Name: Stack
   m_TagString: Untagged
@@ -76,8 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6,
-    type: 3}
+  m_Sprite: {fileID: 489749053598061328, guid: ab70a544ddf4f8a498f3a53dd01359b0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -159,3 +159,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isTrigger: 0
+--- !u!114 &-7388431862275920952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 170731143286027892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 932dc79950bf9df4b890f02469e7ee7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BlockType: 4
