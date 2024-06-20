@@ -18,7 +18,7 @@ public class Unit : MonoBehaviour, IResettable
     private float _timeToMove = 0.7f;
     private Vector3 _offset;
     private Box _carryingBox = null;
-    private BlockType[] _solidBlocks = new BlockType[] { BlockType.wall, BlockType.unit, BlockType.stack, BlockType.box, BlockType.door, BlockType.lever};
+    private BlockType[] _solidBlocks = new BlockType[] { BlockType.wall, BlockType.unit, BlockType.stack, BlockType.box, BlockType.door};
     private Animator _animator;
 
     public bool IsEndExecute {  get; set; }
@@ -117,12 +117,8 @@ public class Unit : MonoBehaviour, IResettable
         {
             if (rayCast.collider.TryGetComponent(out Stack stack))
             {
-                stack.BoxesStack.Push(_carryingBox);
-                if (stack.LastValue != null)
-                    Destroy(stack.LastValue.gameObject);
-                stack.LastValue = Instantiate(_carryingBox.ValueObj.transform);
-                stack.LastValue.SetParent(stack.transform);
-                stack.LastValue.transform.localPosition = new Vector3(0,.135f,0);
+                Stack.Add(_carryingBox);
+                
                 _carryingBox.GetComponent<BoxCollider2D>().enabled = true;
                 _carryingBox.IsCarrying = false;
                 _carryingBox.gameObject.SetActive(false);

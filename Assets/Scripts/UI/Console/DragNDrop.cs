@@ -9,7 +9,7 @@ using UnityEngine.UIElements;
 
 public class DragNDrop : MonoBehaviour
 {
-    static public bool BlockDragging { get; set; } = false;
+    static public bool BlockDragging { get; set; } = true;
     private bool _isDragging;
     private Vector3 _originalPosition;
     private int _sortingLayer;

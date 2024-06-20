@@ -9,8 +9,22 @@ public class Stack : MonoBehaviour, IResettable
     [SerializeField] private int[] requiredStack;
     public Transform LastValue { get; set; }
 
-    public readonly Stack<Box> BoxesStack = new();
+    static public readonly Stack<Box> BoxesStack = new();
 
+    public static void Add(Box box)
+    {
+        BoxesStack.Push(box);
+        
+        foreach (var stack in FindObjectsByType(typeof(Stack), FindObjectsSortMode.None).Select(x => x as Stack).ToArray())
+        {
+            if (stack.LastValue != null)
+                Destroy(stack.LastValue.gameObject);
+            stack.LastValue = Instantiate(box.ValueObj.transform);
+            stack.LastValue.SetParent(stack.transform);
+            stack.LastValue.transform.localPosition = new Vector3(0, .135f, 0);
+        }
+
+    }
     public bool CheckStack()
     {
         Box[] boxesArray = BoxesStack.ToArray();

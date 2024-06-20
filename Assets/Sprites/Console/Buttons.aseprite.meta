@@ -311,7 +311,7 @@ ScriptedImporter:
       serializedVersion: 2
       x: 148
       y: 260
-      width: 80
+      width: 79
       height: 16
     spriteID: f7c5f6cea1411c746b381a22eb7d0c84
     spriteBone: []
@@ -711,7 +711,7 @@ ScriptedImporter:
       serializedVersion: 2
       x: 148
       y: 228
-      width: 80
+      width: 79
       height: 16
     spriteID: 389c6286fb8abbd44bdc4e0d6ea9c1a9
     spriteBone: []
@@ -730,10 +730,70 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 148
-      y: 196
-      width: 80
+      y: 167
+      width: 79
       height: 16
     spriteID: 3bd77f1a0e8025140a52692436a94a91
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: Buttons_61
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 68
+      y: 60
+      width: 64
+      height: 24
+    spriteID: 32859f8852508d54086a7e837eb22b5c
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: Buttons_24
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 68
+      y: 28
+      width: 64
+      height: 24
+    spriteID: 8f95ed55410edf64ab9c7347c6c308e0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: Buttons_99
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 260
+      y: 262
+      width: 32
+      height: 9
+    spriteID: 27a0c07b1adcd4047980e3ff910b240c
     spriteBone: []
     spriteOutline: []
     vertices: []

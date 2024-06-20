@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 78c5a550961b34c46bf7a9f35f429b38
+guid: ab0a6737231e8f34686d8df8ca311ca9
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,7 +97,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638508515212279080
+  platformSettingsDirtyTick: 638515643915738582
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -121,18 +121,19 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Menu Buttons
+  - name: "\u0438\u0434\u0435\u0430\u043B\u044C\u043D\u044B\u0439 \u043A\u0440\u0443\u0433
+      (2)"
     originalName: 
-    pivot: {x: 0.5, y: -2.3928573}
+    pivot: {x: 0.54468083, y: -0.14285715}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 94
-      height: 28
-    spriteID: cf8a716ef796f454db8b08b3a9435903
+      width: 235
+      height: 224
+    spriteID: 7ae4e26138965d2449d42aa34072bab5
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -142,7 +143,8 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
   spriteSheetImportData:
-  - name: Menu Buttons_0
+  - name: "\u0438\u0434\u0435\u0430\u043B\u044C\u043D\u044B\u0439 \u043A\u0440\u0443\u0433
+      (2)_0"
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -150,10 +152,73 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
+      y: 164
+      width: 64
+      height: 64
+    spriteID: 5fe77156d758c77449cf02c470444db7
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: "\u0438\u0434\u0435\u0430\u043B\u044C\u043D\u044B\u0439 \u043A\u0440\u0443\u0433
+      (2)_1"
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 84
+      y: 164
+      width: 64
+      height: 64
+    spriteID: 2f40852d588e4464ba3d369b8135a837
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: "\u0438\u0434\u0435\u0430\u043B\u044C\u043D\u044B\u0439 \u043A\u0440\u0443\u0433
+      (2)_2"
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 174
+      y: 84
+      width: 65
+      height: 65
+    spriteID: 81a477d5efcda4e4799aa46f2848bc2b
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: "\u0438\u0434\u0435\u0430\u043B\u044C\u043D\u044B\u0439 \u043A\u0440\u0443\u0433
+      (2)_3"
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 35
       y: 4
-      width: 31
-      height: 27
-    spriteID: 64096109b6f90234b92249709ba266fe
+      width: 66
+      height: 65
+    spriteID: 3a352b1c53f23414e91e6d6f87c3d84b
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -162,78 +227,19 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: Menu Buttons_2
+  - name: "\u0438\u0434\u0435\u0430\u043B\u044C\u043D\u044B\u0439 \u043A\u0440\u0443\u0433
+      (2)_4"
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 52
-      y: 18
-      width: 13
-      height: 14
-    spriteID: ccc05a363ecb295438247e9b7f0c3d92
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: Menu Buttons_3
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 69
-      y: 18
-      width: 13
-      height: 14
-    spriteID: 864f62abfc180ba438eda644d6301733
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: Menu Buttons_4
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 85
-      y: 18
-      width: 13
-      height: 14
-    spriteID: 94ba4999becf8ca44a2faecdf4a5f553
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: Menu Buttons_5
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 39
+      x: 126
       y: 4
-      width: 7
-      height: 10
-    spriteID: 839bebef28a44534197de97da3d5bd23
+      width: 66
+      height: 65
+    spriteID: 2582fce92d6f4934bb31edc809fde482
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -244,20 +250,22 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   asepriteLayers:
   - layerIndex: 0
-    guid: 61348756
-    name: Menu Buttons
+    guid: -1551936352
+    name: "\u0438\u0434\u0435\u0430\u043B\u044C\u043D\u044B\u0439 \u043A\u0440\u0443\u0433
+      (2)"
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Menu Buttons
+    - name: "\u0438\u0434\u0435\u0430\u043B\u044C\u043D\u044B\u0439 \u043A\u0440\u0443\u0433
+        (2)"
       frameIndex: 0
       cellRect:
-        x: 1
-        y: 67
-        width: 94
-        height: 28
-      spriteId: cf8a716ef796f454db8b08b3a9435903
+        x: 0
+        y: 32
+        width: 235
+        height: 224
+      spriteId: 7ae4e26138965d2449d42aa34072bab5
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -300,4 +308,4 @@ ScriptedImporter:
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 96, y: 96}
+  canvasSize: {x: 256, y: 256}

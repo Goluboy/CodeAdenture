@@ -17,7 +17,7 @@ public class ConditionOfEndOfLevel : MonoBehaviour, IResettable
             return;
         }
 
-        if (_isTrigger && TryGetComponent(out BoxCollider2D box))
+        if (_isTrigger)
         {
             var result = Physics2D.RaycastAll(transform.position, Vector2.up,0.01f);
             IsTrue = result.Count() > 0 && result.Any(x => x.collider.TryGetComponent(out Unit unit));
