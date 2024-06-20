@@ -7,5 +7,7 @@ public enum BlockType
     stack,
     box,
     door,
-    lever
+    lever,
+    Greater,
+    Less
 }

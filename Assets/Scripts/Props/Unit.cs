@@ -70,30 +70,47 @@ public class Unit : MonoBehaviour, IResettable
 
     public void ExecuteIf(IfCommand ifCommand)
     {
-        bool flag = true;
-        Debug.Log("if command " + ifCommand.BlockType + ifCommand.IsTrue);
         var rayCasts = Physics2D.RaycastAll(transform.position, ifCommand.OffsetDirection, 1);
-        foreach (var rayCast in rayCasts)
-        {
-            if (ifCommand.IsTrue && rayCast.collider.TryGetComponent(out Block block) && block.BlockType == ifCommand.BlockType)
-            {
-                if (ifCommand.BlockType == BlockType.unit && gameObject == rayCast.collider.gameObject)
-                    continue;
 
-                Dict[IndexOfCommand(ifCommand)] = true;
-            }
-            else if (!ifCommand.IsTrue && rayCast.collider.TryGetComponent(out Block block1) && block1.BlockType == ifCommand.BlockType) 
-            {
-                if (ifCommand.BlockType == BlockType.unit && gameObject == rayCast.collider.gameObject)
-                    continue;
-                flag = false;
-            }
-        }
-        if (!ifCommand.IsTrue)
+        if (ifCommand.BlockType == BlockType.Greater || ifCommand.BlockType == BlockType.Less)
         {
-            Dict[IndexOfCommand(ifCommand)] = flag;
+            var otherBox = rayCasts
+                    .Select(x => x.collider)
+                    .Where(x => x.TryGetComponent(out Unit _))
+                    .Select(x => x.GetComponent<Unit>()._carryingBox)
+                    .FirstOrDefault();
+            if (otherBox == null) 
+            {
+                otherBox = rayCasts
+                    .Select(x => x.collider)
+                    .Where(x => x.TryGetComponent(out Box _))
+                    .Select(x => x.GetComponent<Box>())
+                    .FirstOrDefault();
+            }
+
+            if (_carryingBox == null || otherBox == null)
+                Dict[IndexOfCommand(ifCommand)] = false;
+            else
+            {
+                if (ifCommand.BlockType == BlockType.Greater)
+                    Dict[IndexOfCommand(ifCommand)] = ifCommand.IsTrue == (_carryingBox.Value < otherBox.Value);
+                else if (ifCommand.BlockType == BlockType.Less)
+                    Dict[IndexOfCommand(ifCommand)] = ifCommand.IsTrue == (_carryingBox.Value > otherBox.Value);
+            }
         }
-        Debug.Log($"{Dict[IndexOfCommand(ifCommand)]}");
+        else
+        {
+            foreach (var rayCast in rayCasts)
+            {
+                if (ifCommand.IsTrue && (ifCommand.BlockType == BlockType.unit && gameObject == rayCast.collider.gameObject
+                    || (rayCast.collider.TryGetComponent(out Block block)
+                    && block.BlockType == ifCommand.BlockType)))
+                {
+                    Dict[IndexOfCommand(ifCommand)] = true;
+                    break;
+                }
+            }
+        }
     }
 
     public void ExecutePickUp(PickUpCommand TakeCommand)

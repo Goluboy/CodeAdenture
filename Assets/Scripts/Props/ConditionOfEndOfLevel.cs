@@ -6,11 +6,21 @@ using UnityEngine;
 
 public class ConditionOfEndOfLevel : MonoBehaviour, IResettable
 {
-    [SerializeField] private bool _isTrigger; 
+    [SerializeField] private bool _isTrigger;
+    [SerializeField] private int _requiredBox;
     public bool IsTrue { get; set; } = false;
 
     public void CalculateStatement()
     {
+        if (_requiredBox != 0)
+        {
+            var result = Physics2D.RaycastAll(transform.position, Vector2.up, 0.01f)
+                .Select(x => x.collider.gameObject.GetComponent<Box>())
+                .FirstOrDefault();
+            IsTrue = result != null ? result.Value == _requiredBox : false;
+            return;
+        }
+
         if (TryGetComponent(out Stack stack))
         {
             IsTrue = stack.CheckStack();

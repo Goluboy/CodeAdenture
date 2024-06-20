@@ -57,6 +57,7 @@ public class Console : MonoBehaviour, IResettable
 
     public void Execute()
     {
+        Units = Units.Where(x => x!=null).ToList();
         if (!_isReady)
             return;
         Debug.Log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
