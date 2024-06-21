@@ -110,7 +110,7 @@ public class Console : MonoBehaviour, IResettable
 
     public void Add(CommandLine commandLine)
     {
-        if (!CommandLines.Contains(commandLine))
+        if (!CommandLines.Contains(commandLine) && CommandLines.Count < 13)
             CommandLines.Add(commandLine);
 
         OrderCommandLines();

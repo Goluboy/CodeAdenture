@@ -10,7 +10,7 @@ using UnityEngine.UIElements;
 
 public class Unit : MonoBehaviour, IResettable
 {
-    public Dictionary<int, bool> Dict { get; set; } = new();
+    public readonly Dictionary<int, bool> Dict = new();
     public Vector3 OriginalPosition { get; private set; }
     private bool _isMoving;
     private int index = 0;
@@ -34,6 +34,11 @@ public class Unit : MonoBehaviour, IResettable
     public void ExecuteReturn(ReturnCommand returnCommand)
     {
         index = IndexOfCommand(returnCommand.Waypoint.GetComponent<Waypoint>());
+        var keys = Dict.Keys.ToArray();
+        foreach (var index in keys)
+        {
+            Dict[index] = false;
+        }
     }
     public void ExecuteUse(UseCommand useCommand)
     {
@@ -102,14 +107,24 @@ public class Unit : MonoBehaviour, IResettable
         {
             foreach (var rayCast in rayCasts)
             {
-                if (ifCommand.IsTrue && (ifCommand.BlockType == BlockType.unit && gameObject == rayCast.collider.gameObject
-                    || (rayCast.collider.TryGetComponent(out Block block)
-                    && block.BlockType == ifCommand.BlockType)))
+                if (ifCommand.BlockType == BlockType.unit)
+                {
+                    if (rayCast.collider.TryGetComponent(out Unit unit) && unit != this)
+                    {
+                        Dict[IndexOfCommand(ifCommand)] = true;
+                        break;
+                    }
+                    continue;
+                }
+
+                if (rayCast.collider.TryGetComponent(out Block block) 
+                    && ifCommand.BlockType == block.BlockType)
                 {
                     Dict[IndexOfCommand(ifCommand)] = true;
                     break;
                 }
             }
+            Dict[IndexOfCommand(ifCommand)] = Dict[IndexOfCommand(ifCommand)] == ifCommand.IsTrue;
         }
     }
 
